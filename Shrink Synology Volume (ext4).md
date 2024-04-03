@@ -242,3 +242,14 @@ root@nas2:~# resize2fs -p /dev/mapper/vg1-volume_1 4026531840
 root@nas2:~# lvm lvreduce -l 3932160 vg1/volume_1
 ...
 ```
+
+# later on
+
+I just grew that same volume by 10TB through the Synology GUI, the resize2fs command running was:
+```
+  PID USER      PR  NI    VIRT    RES  %CPU  %MEM     TIME+ S COMMAND                                                                                                                
+32443 root      10 -10   47.6m  46.5m 95.05 0.072   1:42.02 R /sbin/resize2fs -fpF /dev/mapper/cachedev_0 106388520960K                                                              
+```
+Immediately after I created a new 10TB Btrfs Volume. The volume creation was delayed until the resize2fs operation completed.
+
+![image](https://github.com/0x00af/notes/assets/126998011/521633a7-5c55-4898-841b-5c1cb7725d2f)
